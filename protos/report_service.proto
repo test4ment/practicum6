@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package report;
+
+import "transaction_service.proto";
+
+service ReportService {
+  rpc GenerateMonthlyReport (MonthlyReportRequest) returns (MonthlyReportResponse);
+  rpc ExportReport (ExportReportRequest) returns (ExportReportResponse);
+}
+
+message MonthlyReportRequest {
+  string user_id = 1;
+  string month = 2;  // Format: "YYYY-MM"
+}
+
+message MonthlyReportResponse {
+  double total_income = 1;
+  double total_expenses = 2;
+  repeated transaction.Transaction transactions = 3;
+}
+
+message ExportReportRequest {
+  string user_id = 1;
+  string month = 2;
+}
+
+message ExportReportResponse {
+  bytes file_content = 1;
+}

@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package transaction;
+
+message Transaction {
+  string id = 1;
+  double amount = 2;
+  string category = 3;
+  bool is_income = 4;
+  string date = 5;  // Format: "YYYY-MM-DD"
+}   
+
+service TransactionService {
+  rpc AddTransaction (AddTransactionRequest) returns (AddTransactionResponse);
+  rpc GetTransactions (GetTransactionsRequest) returns (GetTransactionsResponse);
+}
+
+message AddTransactionRequest {
+  string user_id = 1;
+  double amount = 2;
+  string category = 3;
+  bool is_income = 4;
+}
+
+message AddTransactionResponse {
+  bool success = 1;
+}
+
+message GetTransactionsRequest {
+  string user_id = 1;
+  string start_date = 2;  // Format: "YYYY-MM-DD"
+  string end_date = 3;
+}
+
+message GetTransactionsResponse {
+  repeated Transaction transactions = 1;
+}
+
