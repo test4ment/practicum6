@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19transaction_service.proto\x12\x0btransaction\"\\\n\x0bTransaction\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x01\x12\x10\n\x08\x63\x61tegory\x18\x03 \x01(\t\x12\x11\n\tis_income\x18\x04 \x01(\x08\x12\x0c\n\x04\x64\x61te\x18\x05 \x01(\t\"]\n\x15\x41\x64\x64TransactionRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x01\x12\x10\n\x08\x63\x61tegory\x18\x03 \x01(\t\x12\x11\n\tis_income\x18\x04 \x01(\x08\")\n\x16\x41\x64\x64TransactionResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"O\n\x16GetTransactionsRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nstart_date\x18\x02 \x01(\t\x12\x10\n\x08\x65nd_date\x18\x03 \x01(\t\"I\n\x17GetTransactionsResponse\x12.\n\x0ctransactions\x18\x01 \x03(\x0b\x32\x18.transaction.Transaction2\xcd\x01\n\x12TransactionService\x12Y\n\x0e\x41\x64\x64Transaction\x12\".transaction.AddTransactionRequest\x1a#.transaction.AddTransactionResponse\x12\\\n\x0fGetTransactions\x12#.transaction.GetTransactionsRequest\x1a$.transaction.GetTransactionsResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19transaction_service.proto\x12\x0btransaction\"\\\n\x0bTransaction\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x01\x12\x10\n\x08\x63\x61tegory\x18\x03 \x01(\t\x12\x11\n\tis_income\x18\x04 \x01(\x08\x12\x0c\n\x04\x64\x61te\x18\x05 \x01(\t\"]\n\x15\x41\x64\x64TransactionRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x01\x12\x10\n\x08\x63\x61tegory\x18\x03 \x01(\t\x12\x11\n\tis_income\x18\x04 \x01(\x08\"C\n\x16\x41\x64\x64TransactionResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x18\n\x10response_success\x18\x02 \x01(\x08\"O\n\x16GetTransactionsRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x12\n\nstart_date\x18\x02 \x01(\t\x12\x10\n\x08\x65nd_date\x18\x03 \x01(\t\"I\n\x17GetTransactionsResponse\x12.\n\x0ctransactions\x18\x01 \x03(\x0b\x32\x18.transaction.Transaction2\xcd\x01\n\x12TransactionService\x12Y\n\x0e\x41\x64\x64Transaction\x12\".transaction.AddTransactionRequest\x1a#.transaction.AddTransactionResponse\x12\\\n\x0fGetTransactions\x12#.transaction.GetTransactionsRequest\x1a$.transaction.GetTransactionsResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,11 +36,11 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_ADDTRANSACTIONREQUEST']._serialized_start=136
   _globals['_ADDTRANSACTIONREQUEST']._serialized_end=229
   _globals['_ADDTRANSACTIONRESPONSE']._serialized_start=231
-  _globals['_ADDTRANSACTIONRESPONSE']._serialized_end=272
-  _globals['_GETTRANSACTIONSREQUEST']._serialized_start=274
-  _globals['_GETTRANSACTIONSREQUEST']._serialized_end=353
-  _globals['_GETTRANSACTIONSRESPONSE']._serialized_start=355
-  _globals['_GETTRANSACTIONSRESPONSE']._serialized_end=428
-  _globals['_TRANSACTIONSERVICE']._serialized_start=431
-  _globals['_TRANSACTIONSERVICE']._serialized_end=636
+  _globals['_ADDTRANSACTIONRESPONSE']._serialized_end=298
+  _globals['_GETTRANSACTIONSREQUEST']._serialized_start=300
+  _globals['_GETTRANSACTIONSREQUEST']._serialized_end=379
+  _globals['_GETTRANSACTIONSRESPONSE']._serialized_start=381
+  _globals['_GETTRANSACTIONSRESPONSE']._serialized_end=454
+  _globals['_TRANSACTIONSERVICE']._serialized_start=457
+  _globals['_TRANSACTIONSERVICE']._serialized_end=662
 # @@protoc_insertion_point(module_scope)

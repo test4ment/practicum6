@@ -16,6 +16,7 @@ message RegisterRequest {
 
 message RegisterResponse {
   bool success = 1;
+  bool response_success = 2;
 }
 
 message AuthRequest {
@@ -25,6 +26,7 @@ message AuthRequest {
 
 message AuthResponse {
   bool success = 1;
+  bool response_success = 2;
 }
 
 message GetUserInfoRequest {

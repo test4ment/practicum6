@@ -31,7 +31,7 @@ class TransactionService(TransactionServiceServicer):
 
     def AddTransaction(self, request, context):
         self.transaction_provider.add_transaction(request.user_id, request.amount, request.category, request.is_income)
-        return AddTransactionResponse(success=True)
+        return AddTransactionResponse(success=True, response_success=True)
 
     def GetTransactions(self, request, context):
         transactions = self.transaction_provider.get_transactions(request.user_id, request.start_date, request.end_date)

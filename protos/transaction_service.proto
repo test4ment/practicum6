@@ -24,6 +24,7 @@ message AddTransactionRequest {
 
 message AddTransactionResponse {
   bool success = 1;
+  bool response_success = 2;
 }
 
 message GetTransactionsRequest {

@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12user_service.proto\x12\x04user\"C\n\x0fRegisterRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x0c\n\x04role\x18\x03 \x01(\t\"#\n\x10RegisterResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"1\n\x0b\x41uthRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"\x1f\n\x0c\x41uthResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"&\n\x12GetUserInfoRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"5\n\x13GetUserInfoResponse\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x0c\n\x04role\x18\x02 \x01(\t2\xbb\x01\n\x0bUserService\x12\x39\n\x08Register\x12\x15.user.RegisterRequest\x1a\x16.user.RegisterResponse\x12-\n\x04\x41uth\x12\x11.user.AuthRequest\x1a\x12.user.AuthResponse\x12\x42\n\x0bGetUserInfo\x12\x18.user.GetUserInfoRequest\x1a\x19.user.GetUserInfoResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12user_service.proto\x12\x04user\"C\n\x0fRegisterRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x0c\n\x04role\x18\x03 \x01(\t\"=\n\x10RegisterResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x18\n\x10response_success\x18\x02 \x01(\x08\"1\n\x0b\x41uthRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"9\n\x0c\x41uthResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x18\n\x10response_success\x18\x02 \x01(\x08\"&\n\x12GetUserInfoRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"5\n\x13GetUserInfoResponse\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x0c\n\x04role\x18\x02 \x01(\t2\xbb\x01\n\x0bUserService\x12\x39\n\x08Register\x12\x15.user.RegisterRequest\x1a\x16.user.RegisterResponse\x12-\n\x04\x41uth\x12\x11.user.AuthRequest\x1a\x12.user.AuthResponse\x12\x42\n\x0bGetUserInfo\x12\x18.user.GetUserInfoRequest\x1a\x19.user.GetUserInfoResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,15 +34,15 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_REGISTERREQUEST']._serialized_start=28
   _globals['_REGISTERREQUEST']._serialized_end=95
   _globals['_REGISTERRESPONSE']._serialized_start=97
-  _globals['_REGISTERRESPONSE']._serialized_end=132
-  _globals['_AUTHREQUEST']._serialized_start=134
-  _globals['_AUTHREQUEST']._serialized_end=183
-  _globals['_AUTHRESPONSE']._serialized_start=185
-  _globals['_AUTHRESPONSE']._serialized_end=216
-  _globals['_GETUSERINFOREQUEST']._serialized_start=218
-  _globals['_GETUSERINFOREQUEST']._serialized_end=256
-  _globals['_GETUSERINFORESPONSE']._serialized_start=258
-  _globals['_GETUSERINFORESPONSE']._serialized_end=311
-  _globals['_USERSERVICE']._serialized_start=314
-  _globals['_USERSERVICE']._serialized_end=501
+  _globals['_REGISTERRESPONSE']._serialized_end=158
+  _globals['_AUTHREQUEST']._serialized_start=160
+  _globals['_AUTHREQUEST']._serialized_end=209
+  _globals['_AUTHRESPONSE']._serialized_start=211
+  _globals['_AUTHRESPONSE']._serialized_end=268
+  _globals['_GETUSERINFOREQUEST']._serialized_start=270
+  _globals['_GETUSERINFOREQUEST']._serialized_end=308
+  _globals['_GETUSERINFORESPONSE']._serialized_start=310
+  _globals['_GETUSERINFORESPONSE']._serialized_end=363
+  _globals['_USERSERVICE']._serialized_start=366
+  _globals['_USERSERVICE']._serialized_end=553
 # @@protoc_insertion_point(module_scope)

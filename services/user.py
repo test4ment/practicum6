@@ -11,9 +11,6 @@ class UserDataProvider:
     def get_user(self, username: str):
         return self.users.get(username)
 
-    def get_user_auth(self, username: str):
-        return self.users.get(username)
-
     def add_user(self, username: str, password: str, role: str):
         assert not username in self.users, "Username has taken"
 
@@ -30,19 +27,19 @@ class UserService(UserServiceServicer):
 
     def Register(self, request, context):
         self.userdata_provider.add_user(request.username, request.password, request.role)
-        return RegisterResponse(success=True)
+        return RegisterResponse(success=True, response_success=True)
 
     def Auth(self, request, context):
-        user = self.userdata_provider.get_user_auth(request.username)
-        success = user and user["pwhash"] == hashlib.md5(request.password.encode()).hexdigest()
-        return AuthResponse(success=success)
+        user = self.userdata_provider.get_user(request.username)
+        success = bool(user) and user["pwhash"] == hashlib.md5(request.password.encode()).hexdigest()
+        return AuthResponse(success=success, response_success=True)
 
     def GetUserInfo(self, request, context):
         user = self.userdata_provider.get_user(request.username)
         return GetUserInfoResponse(username=user["username"], role=user["role"])
 
 def serve():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
     add_UserServiceServicer_to_server(
         UserService(UserDataProvider()), 
         server

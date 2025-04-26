@@ -7,8 +7,11 @@ from transaction_service_pb2 import AddTransactionRequest, GetTransactionsReques
 from report_service_pb2_grpc import ReportServiceStub
 from report_service_pb2 import MonthlyReportRequest, ExportReportRequest
 from google.protobuf.json_format import MessageToDict
+from app import jwt
 
 app = FastAPI()
+
+app.include_router(jwt.router)
 
 types = {
     8: "bool",  
