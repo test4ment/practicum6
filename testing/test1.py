@@ -1,5 +1,5 @@
 import grpc
-from user_service_pb2 import RegisterRequest, AuthRequest, GetUserInfoRequest
+from user_service_pb2 import RegisterRequest, AuthRequest, GetUserInfoRequest, GetUserInfoResponse
 from user_service_pb2_grpc import UserServiceStub
 
 channel = grpc.insecure_channel("localhost:50051")

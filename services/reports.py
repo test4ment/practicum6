@@ -15,7 +15,7 @@ class ReportService(ReportServiceServicer):
         channel = grpc.insecure_channel("localhost:50052") # make dependency
         self.transactionservice = TransactionServiceStub(channel)
 
-    def GenerateMonthlyReport(self, request, context):
+    def MonthlyReport(self, request, context):
         dt = datetime.strptime(request.month, self.month_format)
         
         transactions = self.transactionservice.GetTransactions(
@@ -35,7 +35,7 @@ class ReportService(ReportServiceServicer):
         )
 
     def ExportReport(self, request, context):
-        monthly_report = self.GenerateMonthlyReport(request=request, context=context)
+        monthly_report = self.MonthlyReport(request=request, context=context)
         report_data = {"month": request.month, "total_income": monthly_report.total_income, "total_expenses": monthly_report.total_expenses}
         file_content = json.dumps(report_data).encode()
         return ExportReportResponse(file_content=file_content)

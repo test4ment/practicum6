@@ -5,7 +5,7 @@ package report;
 import "transaction_service.proto";
 
 service ReportService {
-  rpc GenerateMonthlyReport (MonthlyReportRequest) returns (MonthlyReportResponse);
+  rpc MonthlyReport (MonthlyReportRequest) returns (MonthlyReportResponse);
   rpc ExportReport (ExportReportRequest) returns (ExportReportResponse);
 }
 
