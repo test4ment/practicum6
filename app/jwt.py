@@ -5,7 +5,7 @@ import requests
 from jose import JWTError, jwt
 from user_service_pb2 import AuthRequest, GetUserInfoRequest, GetUserInfoResponse
 from google.protobuf.json_format import MessageToDict
-from app import app
+from app import app_fa
 import os
 import dotenv
 
@@ -23,11 +23,11 @@ GITHUB_CLIENT_SECRET = os.getenv("GITHUB_CLIENT_SECRET")
 REDIRECT_URI = os.getenv("REDIRECT_URI")
 
 def get_user(username: str):
-    stub = app.services["userservice"]
+    stub = app_fa.services["userservice"]
     return MessageToDict(stub.GetUserInfo(GetUserInfoRequest(username=username)))
 
 def auth(username: str, password: str):
-    stub = app.services["userservice"]
+    stub = app_fa.services["userservice"]
     return MessageToDict(stub.Auth(AuthRequest(username=username, password=password)))
 
 

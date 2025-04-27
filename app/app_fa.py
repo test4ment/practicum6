@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-import grpc
 from user_service_pb2_grpc import UserServiceStub
 from user_service_pb2 import RegisterRequest, AuthRequest, GetUserInfoRequest
 from transaction_service_pb2_grpc import TransactionServiceStub
@@ -8,6 +7,7 @@ from report_service_pb2_grpc import ReportServiceStub
 from report_service_pb2 import MonthlyReportRequest, ExportReportRequest
 from google.protobuf.json_format import MessageToDict
 from app import jwt
+from app import services_dep
 
 app = FastAPI()
 
@@ -34,17 +34,9 @@ types = {
     4: "int"  
 }
 
-services = {
-    "userservice": ("localhost:50051", UserServiceStub),
-    "transactionservice": ("localhost:50052", TransactionServiceStub),
-    "reportservice": ("localhost:50053", ReportServiceStub),
-}
 
-for name, (addr, cls) in services.items():
-    channel = grpc.insecure_channel(addr)
-    services[name] = cls(channel)
 
-for name, cls in services.items():
+for name, cls in services_dep.services.items():
     for method in cls.__dict__:
         fields_str = ", ".join([f"{f.name}: {types[f.type]}" for f in eval(f"{method}Request.DESCRIPTOR.fields")])
         fields_fillup = ", ".join([f"{f.name}={f.name}" for f in eval(f"{method}Request.DESCRIPTOR.fields")])
