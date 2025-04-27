@@ -1,0 +1,38 @@
+# mutation{
+#   registerUser(username:"1", pw:"pw", role:"user"){
+#     user{username, role, transactions {
+#       username
+#       amount
+#       category
+#       isIncome
+#       date
+#     }}
+#   }
+# }
+
+# query{
+#   getUser(username: "1"){
+#     role,
+#     username,
+#     transactions {
+#       amount
+#       category
+#       isIncome
+#       date
+#     }
+#   }
+# }
+
+# mutation{
+#   addTransaction(username:"1", amount:100.0, category:"Salary", isIncome:true){success}
+# }
+
+# subscription{
+#   transactionAdded(username: "1"){
+#     username
+#     amount
+#     category
+#     isIncome
+#     date
+#   }
+# }
