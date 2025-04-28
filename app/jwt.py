@@ -1,20 +1,18 @@
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from datetime import datetime, timedelta
-from typing import Optional
 import requests
 from jose import JWTError, jwt
+from app.jwt_worker import ALGORITHM, SECRET_KEY, create_access_token, create_refresh_token
 from user_service_pb2 import AuthRequest, GetUserInfoRequest, GetUserInfoResponse
 from google.protobuf.json_format import MessageToDict
 from app import app_fa
 import os
 import dotenv
 
-dotenv.load_dotenv()
+dotenv.load_dotenv(override=True)
 
 router = APIRouter(prefix="/public")
 
-SECRET_KEY = "your-secret-key-here"
-ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 REFRESH_TOKEN_EXPIRE_DAYS = 7
 
@@ -30,26 +28,6 @@ def auth(username: str, password: str):
     stub = app_fa.services["userservice"]
     return MessageToDict(stub.Auth(AuthRequest(username=username, password=password)))
 
-
-def create_access_token(data: dict, expires_delta: timedelta = None):
-    to_encode = data.copy()
-    if expires_delta:
-        expire = datetime.now() + expires_delta
-    else:
-        expire = datetime.now() + timedelta(minutes=15)
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
-
-def create_refresh_token(data: dict, expires_delta: Optional[timedelta] = None):
-    to_encode = data.copy()
-    if expires_delta:
-        expire = datetime.now() + expires_delta
-    else:
-        expire = datetime.now() + timedelta(days=7)
-    to_encode.update({"exp": expire, "refresh": True})
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
 
 @router.get("/login")
 async def login_for_access_token(username: str, pw: str):
@@ -178,6 +156,7 @@ async def github_callback(code: str):
         "client_secret": GITHUB_CLIENT_SECRET,
         "code": code,
         "redirect_uri": REDIRECT_URI,
+        "mode": "no-cors"
     }
     headers = {"Accept": "application/json"}
 

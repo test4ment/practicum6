@@ -5,7 +5,6 @@ from flask import Flask
 from flask_graphql import GraphQLView
 import asyncio
 from app import services_dep
-from flask_socketio import SocketIO
 from transaction_service_pb2 import AddTransactionRequest, GetTransactionsRequest
 from google.protobuf.json_format import MessageToDict
 from user_service_pb2 import RegisterRequest, AuthRequest, GetUserInfoRequest, GetUserInfoResponse
