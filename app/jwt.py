@@ -5,6 +5,7 @@ from jose import JWTError, jwt
 from app.jwt_worker import ALGORITHM, SECRET_KEY, create_access_token, create_refresh_token
 from user_service_pb2 import AuthRequest, GetUserInfoRequest, GetUserInfoResponse
 from google.protobuf.json_format import MessageToDict
+from app import services_dep
 from app import app_fa
 import os
 import dotenv
@@ -21,11 +22,11 @@ GITHUB_CLIENT_SECRET = os.getenv("GITHUB_CLIENT_SECRET")
 REDIRECT_URI = os.getenv("REDIRECT_URI")
 
 def get_user(username: str):
-    stub = app_fa.services["userservice"]
+    stub = services_dep.services["userservice"]
     return MessageToDict(stub.GetUserInfo(GetUserInfoRequest(username=username)))
 
 def auth(username: str, password: str):
-    stub = app_fa.services["userservice"]
+    stub = services_dep.services["userservice"]
     return MessageToDict(stub.Auth(AuthRequest(username=username, password=password)))
 
 
@@ -123,7 +124,7 @@ class RoleChecker:
 
 @router.get("/users/me/")
 async def read_users_me(token: str):
-    return get_current_user(token)
+    return await get_current_user(token)
 
 @router.get("/admin/", dependencies=[Depends(RoleChecker(["admin"]))])
 async def admin_only():
@@ -189,3 +190,19 @@ async def get_github_user_data(access_token: str):
         raise HTTPException(status_code=401, detail="Invalid access token")
 
     return data
+
+if __name__ == "__main__":
+    import uvicorn
+    import os
+    path = os.getcwd() + "/certs/"
+
+    app_fa.app.include_router(router)
+
+    uvicorn.run(
+        app_fa.app,
+        host="127.0.0.1",
+        port=8000,
+        ssl_keyfile=path + "server.key",
+        ssl_certfile=path + "server.crt",
+        # reload=True
+    )

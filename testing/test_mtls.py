@@ -1,3 +1,4 @@
+from ssl import SSLError
 import requests
 import os
 path = os.getcwd() + "/certs/"
@@ -19,4 +20,7 @@ with requests.Session() as s:
     resp = s.get(addr + f"auth_service?token=abracadabra")
     print(resp)
 
-    
+try:
+    resp = requests.get(addr, timeout=2.5)
+except Exception as ex:
+    print(ex)

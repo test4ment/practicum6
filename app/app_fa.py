@@ -6,12 +6,9 @@ from transaction_service_pb2 import AddTransactionRequest, GetTransactionsReques
 from report_service_pb2_grpc import ReportServiceStub
 from report_service_pb2 import MonthlyReportRequest, ExportReportRequest
 from google.protobuf.json_format import MessageToDict
-from app import jwt
 from app import services_dep
 
 app = FastAPI()
-
-app.include_router(jwt.router)
 
 types = {
     8: "bool",  
@@ -45,6 +42,21 @@ for name, cls in services_dep.services.items():
 @app.get('/{name}/{method}')
 async def {name}_{method}({fields_str}):
     req = {method}Request({fields_fillup})
-    resp = services['{name}'].{method}(req)
+    resp = services_dep.services['{name}'].{method}(req)
     return MessageToDict(resp)
             """)
+
+if __name__ == "__main__":
+    import uvicorn
+    import os
+    path = os.getcwd() + "/certs/"
+
+    uvicorn.run(
+        "app.app_fa:app",
+        host="127.0.0.1",
+        port=8000,
+        ssl_keyfile=path + "server.key",
+        ssl_certfile=path + "server.crt",
+        reload=True
+    )
+    
